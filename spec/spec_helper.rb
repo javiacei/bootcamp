@@ -29,6 +29,7 @@ Dir['./spec/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   config.include Matchers::Api, type: :controller
+  config.include Helpers::ControllerSpec, type: :controller
 
   # config.before(:all, sphinx: true) do
   #   DatabaseCleaner.clean
