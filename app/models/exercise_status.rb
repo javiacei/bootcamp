@@ -3,9 +3,10 @@ class ExerciseStatus < ActiveRecord::Base
   belongs_to :course, class_name: 'Course', foreign_key: 'course_id'
   belongs_to :exercise, class_name: 'Exercise', foreign_key: 'exercise_id'
 
+  DONE = 2
   STATES = ['to do', 'in progress', 'done'].freeze
 
   def state_humanize
-    STATUS[state]
+    STATES[state]
   end
 end

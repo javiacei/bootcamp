@@ -17,7 +17,7 @@ class CreateBootcampTables < ActiveRecord::Migration
     add_foreign_key :exercises, :courses, column: :course_id, on_delete: :cascade
     add_index :exercises, [:course_id, :number], unique: true
 
-    create_table :exercise_status do |t|
+    create_table :exercise_statuses do |t|
       t.references :user, index: true
       t.references :course, index: true
       t.references :exercise, index: true
@@ -27,10 +27,10 @@ class CreateBootcampTables < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_foreign_key :exercise_status, :users, column: :user_id, on_delete: :cascade
-    add_foreign_key :exercise_status, :courses, column: :course_id, on_delete: :cascade
-    add_foreign_key :exercise_status, :exercises, column: :exercise_id, on_delete: :cascade
+    add_foreign_key :exercise_statuses, :users, column: :user_id, on_delete: :cascade
+    add_foreign_key :exercise_statuses, :courses, column: :course_id, on_delete: :cascade
+    add_foreign_key :exercise_statuses, :exercises, column: :exercise_id, on_delete: :cascade
 
-    add_index :exercise_status, [:user_id, :course_id, :exercise_id], unique: true
+    add_index :exercise_statuses, [:user_id, :course_id, :exercise_id], unique: true
   end
 end

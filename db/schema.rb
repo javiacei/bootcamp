@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160326142051) do
     t.datetime "updated_at"
   end
 
-  create_table "exercise_status", force: :cascade do |t|
+  create_table "exercise_statuses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
     t.integer  "course_id",      limit: 4
     t.integer  "exercise_id",    limit: 4
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 20160326142051) do
     t.datetime "updated_at"
   end
 
-  add_index "exercise_status", ["course_id"], name: "index_exercise_status_on_course_id", using: :btree
-  add_index "exercise_status", ["exercise_id"], name: "index_exercise_status_on_exercise_id", using: :btree
-  add_index "exercise_status", ["user_id", "course_id", "exercise_id"], name: "index_exercise_status_on_user_id_and_course_id_and_exercise_id", unique: true, using: :btree
-  add_index "exercise_status", ["user_id"], name: "index_exercise_status_on_user_id", using: :btree
+  add_index "exercise_statuses", ["course_id"], name: "index_exercise_statuses_on_course_id", using: :btree
+  add_index "exercise_statuses", ["exercise_id"], name: "index_exercise_statuses_on_exercise_id", using: :btree
+  add_index "exercise_statuses", ["user_id", "course_id", "exercise_id"], name: "index_exercise_statuses_on_user_id_and_course_id_and_exercise_id", unique: true, using: :btree
+  add_index "exercise_statuses", ["user_id"], name: "index_exercise_statuses_on_user_id", using: :btree
 
   create_table "exercises", force: :cascade do |t|
     t.integer  "course_id",   limit: 4
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20160326142051) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "exercise_status", "courses", on_delete: :cascade
-  add_foreign_key "exercise_status", "exercises", on_delete: :cascade
-  add_foreign_key "exercise_status", "users", on_delete: :cascade
+  add_foreign_key "exercise_statuses", "courses", on_delete: :cascade
+  add_foreign_key "exercise_statuses", "exercises", on_delete: :cascade
+  add_foreign_key "exercise_statuses", "users", on_delete: :cascade
   add_foreign_key "exercises", "courses", on_delete: :cascade
 end
