@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 20160326142051) do
   add_index "exercise_status", ["user_id"], name: "index_exercise_status_on_user_id", using: :btree
 
   create_table "exercises", force: :cascade do |t|
+    t.integer  "course_id",   limit: 4
     t.integer  "number",      limit: 4,     null: false
     t.text     "description", limit: 65535, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "exercises", ["course_id", "number"], name: "index_exercises_on_course_id_and_number", unique: true, using: :btree
+  add_index "exercises", ["course_id"], name: "index_exercises_on_course_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", limit: 4,     null: false
@@ -105,4 +109,5 @@ ActiveRecord::Schema.define(version: 20160326142051) do
   add_foreign_key "exercise_status", "courses", on_delete: :cascade
   add_foreign_key "exercise_status", "exercises", on_delete: :cascade
   add_foreign_key "exercise_status", "users", on_delete: :cascade
+  add_foreign_key "exercises", "courses", on_delete: :cascade
 end

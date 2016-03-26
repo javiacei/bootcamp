@@ -7,11 +7,15 @@ class CreateBootcampTables < ActiveRecord::Migration
     end
 
     create_table :exercises do |t|
-      t.integer :number, null: false
-      t.text    :description, null: false
+      t.references :course, index: true
+      t.integer    :number, null: false
+      t.text       :description, null: false
 
       t.timestamps
     end
+
+    add_foreign_key :exercises, :courses, column: :course_id, on_delete: :cascade
+    add_index :exercises, [:course_id, :number], unique: true
 
     create_table :exercise_status do |t|
       t.references :user, index: true

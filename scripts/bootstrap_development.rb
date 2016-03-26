@@ -2,6 +2,12 @@
 User.delete_all
 FactoryGirl.create(:user, name: 'Francisco Javier Aceituno', email: 'javiacei@ironhack-bootcamp.com')
 
+# Courses & exercises
+Course.delete_all # Exercises are deleted automatically (on_delete: :cascade)
+2.times do
+  FactoryGirl.create :course_with_exercises, exercises_count: Faker::Number.between(10, 20)
+end
+
 # OAuth
 Doorkeeper::Application.delete_all
 Doorkeeper::AccessToken.delete_all
