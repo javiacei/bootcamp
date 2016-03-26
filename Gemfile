@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
+gem 'dotenv-rails' # config in env variables
 
 group :development, :test do
   gem 'factory_girl_rails'
