@@ -7,24 +7,26 @@ class CreateBootcampTables < ActiveRecord::Migration
     end
 
     create_table :exercises do |t|
-      t.string :question, null: false
+      t.integer :number, null: false
+      t.text    :description, null: false
 
       t.timestamps
     end
 
-    create_table :preworks do |t|
+    create_table :exercise_status do |t|
       t.references :user, index: true
       t.references :course, index: true
       t.references :exercise, index: true
       t.integer    :state, default: 0, limit: 1
+      t.string     :resolution_url
 
       t.timestamps
     end
 
-    add_foreign_key :preworks, :users, column: :user_id, on_delete: :cascade
-    add_foreign_key :preworks, :courses, column: :course_id, on_delete: :cascade
-    add_foreign_key :preworks, :exercises, column: :exercise_id, on_delete: :cascade
+    add_foreign_key :exercise_status, :users, column: :user_id, on_delete: :cascade
+    add_foreign_key :exercise_status, :courses, column: :course_id, on_delete: :cascade
+    add_foreign_key :exercise_status, :exercises, column: :exercise_id, on_delete: :cascade
 
-    add_index :preworks, [:user_id, :course_id, :exercise_id], unique: true
+    add_index :exercise_status, [:user_id, :course_id, :exercise_id], unique: true
   end
 end
