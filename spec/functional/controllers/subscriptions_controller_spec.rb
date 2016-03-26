@@ -18,7 +18,7 @@ describe SubscriptionsController, type: :controller do
       before(:each) { authenticate app, user }
 
       it 'should return a created response' do
-        expect(subject).to have_http_status(:create)
+        expect(subject).to have_http_status(:created)
       end
     end
   end
