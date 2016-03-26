@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326122307) do
+ActiveRecord::Schema.define(version: 20160326142051) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string   "question",   limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", limit: 4,     null: false
@@ -53,6 +65,20 @@ ActiveRecord::Schema.define(version: 20160326122307) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
+  create_table "preworks", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "course_id",   limit: 4
+    t.integer  "exercise_id", limit: 4
+    t.integer  "state",       limit: 1, default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "preworks", ["course_id"], name: "index_preworks_on_course_id", using: :btree
+  add_index "preworks", ["exercise_id"], name: "index_preworks_on_exercise_id", using: :btree
+  add_index "preworks", ["user_id", "course_id", "exercise_id"], name: "index_preworks_on_user_id_and_course_id_and_exercise_id", unique: true, using: :btree
+  add_index "preworks", ["user_id"], name: "index_preworks_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -74,4 +100,7 @@ ActiveRecord::Schema.define(version: 20160326122307) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "preworks", "courses", on_delete: :cascade
+  add_foreign_key "preworks", "exercises", on_delete: :cascade
+  add_foreign_key "preworks", "users", on_delete: :cascade
 end
