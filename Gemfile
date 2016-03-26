@@ -7,6 +7,7 @@ gem 'dotenv-rails' # config in env variables
 gem 'devise'
 gem 'doorkeeper'
 gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', ref: 'master'
+gem 'virtus'
 
 group :development, :test do
   gem 'factory_girl_rails'

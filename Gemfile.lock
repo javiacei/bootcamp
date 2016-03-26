@@ -252,6 +252,7 @@ DEPENDENCIES
   rubycritic
   simplecov
   spring
+  virtus
 
 BUNDLED WITH
    1.11.2

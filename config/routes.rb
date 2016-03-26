@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     skip_controllers :applications, :authorized_applications
   end
 
-  resources :bootcamps, only: [:index]
-  resources :students, only: [:show]
+  resources :courses, only: [] do
+    resources :exercises, param: :number, only: [:update]
+  end
 end
