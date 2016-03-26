@@ -3,6 +3,6 @@ FactoryGirl.define do
     name          { Faker::App.name }
     uid           { Faker::Internet.password(64) }
     secret        { Faker::Internet.password(64) }
-    redirect_uri  { Faker::Internet.url }
+    redirect_uri  { Faker::Internet.url.gsub('http', 'https') }
   end
 end
