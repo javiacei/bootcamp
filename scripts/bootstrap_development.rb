@@ -1,6 +1,6 @@
 # User
 User.delete_all
-FactoryGirl.create(:user, name: 'Francisco Javier Aceituno', email: 'javiacei@ironhack-bootcamp.com')
+user = FactoryGirl.create(:user, name: 'Francisco Javier Aceituno', email: 'javiacei@ironhack-bootcamp.com')
 
 # Courses & exercises
 Course.delete_all # Exercises are deleted automatically (on_delete: :cascade)
@@ -23,5 +23,6 @@ FactoryGirl.create(
 # Access token to use in DHC
 FactoryGirl.create(
   :access_token,
+  resource_owner_id: user.id,
   token: 'b1d00718ec57dcee2e39db98338b5537503ced09dd9d428aeafa1c118c21e4e0'
 )
