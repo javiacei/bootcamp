@@ -4,10 +4,19 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
+    begin
+      if ActionController::HttpAuthentication::Basic.has_basic_credentials?(request)
+        email,password = ActionController::HttpAuthentication::Basic.user_name_and_password(request)
+        user = User.find_by(email: email)
+        if user && ::Devise::Encryptor.compare(user.class, user.encrypted_password, password)
+          auth_user = user
+        end
+      end
+
+      auth_user ? auth_user : redirect_to('/oauth/denied')
+    rescue StandardError
+      redirect_to('/oauth/denied')
+    end
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
