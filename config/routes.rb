@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   resources :courses, only: [] do
     resources :exercises, param: :number, only: [:update]
+    resource :subscription, only: [:create]
   end
 end
