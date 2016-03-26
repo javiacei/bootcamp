@@ -6,6 +6,7 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'dotenv-rails' # config in env variables
 gem 'devise'
 gem 'doorkeeper'
+gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', ref: 'master'
 
 group :development, :test do
   gem 'factory_girl_rails'

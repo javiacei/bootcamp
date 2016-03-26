@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/rails-api/active_model_serializers
+  revision: 82da04de67142cb20411cb795b9ec26edf1e54e7
+  ref: master
+  specs:
+    active_model_serializers (0.10.0.rc4)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -224,6 +234,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   byebug
   database_cleaner
   devise

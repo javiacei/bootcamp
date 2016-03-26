@@ -19,10 +19,11 @@ describe StudentsController, type: :controller do
       it 'should return a correct response' do
         expect(subject).to have_http_status(:ok)
       end
+
+      it 'should return a valid json-api format response' do
+        expect(subject).to match_response_schema(:json_api)
+      end
     end
 
-    it 'should return a valid json-api format response' do
-      expect(subject).to match_response_schema(:json_api)
-    end
   end
 end
