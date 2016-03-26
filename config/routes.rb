@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   end
 
   resources :bootcamps, only: [:index]
+  resources :students, only: [:show]
 end
