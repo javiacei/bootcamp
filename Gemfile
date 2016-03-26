@@ -4,6 +4,7 @@ gem 'rails', '4.2.6'
 gem 'rails-api'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'dotenv-rails' # config in env variables
+gem 'devise'
 
 group :development, :test do
   gem 'factory_girl_rails'
